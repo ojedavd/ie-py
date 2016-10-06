@@ -1,0 +1,53 @@
+<openerp>
+    <data>
+      <!-- PROVINCIAS -->
+      <record model="ie.provincia" id="entre_rios">
+        <field name="name">Entre Rios</field>         
+      </record>
+      <!-- CIUDADES -->     
+      <record model="ie.ciudad" id="santa_elena">
+        <field name="provincia_id" ref="ie.entre_rios"/>
+        <field name="name">Santa Elena</field>         
+      </record>
+      <!-- SEDES -->
+      <record model="ie.sede" id="sede_se">
+        <field name="ciudad_id" ref="ie.santa_elena"/>
+        <field name="name">Sede Santa Elena</field>         
+        <field name="email">sede@santa.com</field>         
+      </record>
+      <!-- BORRAR PARA PONERLO EN PRODUCCION -->
+      <!-- ALUMNO -->
+      <record model="ie.alumno" id="alumno1">
+        <field name="dni">31955021</field>         
+        <field name="nombre">Victor</field>         
+        <field name="apellido">Ojeda</field>         
+        <field name="domicilio">Antartida 999</field>         
+        <field name="telefono">481984</field>         
+        <field name="email">ojedavd@gmail.com</field>         
+        <field name="fecha">11/11/1985</field>         
+        <field name="ciudad_id" ref="ie.santa_elena"/>
+        <field name="sede_id" ref="ie.sede_se"/>
+      </record>
+      <record model="ie.alumno" id="alumno2">
+        <field name="dni">31955022</field>         
+        <field name="nombre">Juan</field>         
+        <field name="apellido">Perez</field>         
+        <field name="domicilio">Mexico 999</field>         
+        <field name="telefono">481984</field>         
+        <field name="email">jperez@gmail.com</field>         
+        <field name="fecha">11/11/1985</field>         
+        <field name="ciudad_id" ref="ie.santa_elena"/>
+        <field name="sede_id" ref="ie.sede_se"/>
+        <field name="baja">False</field>         
+      </record>
+      <!-- CURSO -->
+      <record model="ie.curso" id="curso1">
+        <field name="name">Psicologia</field>         
+        <field name="codigo">PSI</field>         
+        <field name="tipo">Diplomatura</field>         
+        <field name="inicio">11/11/1985</field>         
+        <field name="fin">11/11/1985</field>         
+        <field name="sede_id" ref="ie.sede_se"/>
+      </record>
+    </data>
+</openerp>

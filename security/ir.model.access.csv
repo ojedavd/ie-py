@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+alumno_manager,alumno manager,model_ie_alumno,group_manager,1,1,1,1
+curso_manager,curso manager,model_ie_curso,group_manager,1,1,1,1
+inscripcion_read_all,inscripcion all,model_ie_inscripcion,,1,0,0,0

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+
+        <!--
+            VISTA FORMULARIO
+        -->        
+        <record model="ir.ui.view" id="alumno_form">
+           <field name="name">alumno.form</field>
+           <field name="model">ie.alumno</field>
+           <field name="arch" type="xml">
+               <form string="Alumno Form">
+                    <group col="2">
+                        <field name="dni"/>
+                        <field name="nombre"/>
+                        <field name="apellido"/>
+                        <field name="domicilio" placeholder=
+                            "Calle N° Piso Dtpo Barrio"/>
+                        <field name="telefono"/>
+                        <field name="email"/>
+                        <field name="fecha"/>
+                        <field name="ciudad_id"/>
+                        <field name="sede_id"/>
+                        <field name="baja"/>
+                    </group>
+                    <notebook>
+                      <!-- SOLAPA INSCRIPCIONES --> 
+                      <page string="Inscripciones">
+                          <field name="inscripcion_ids">
+                              <form string="Inscripciones" editable="bottom">
+                                <group col="2">
+                                <field name="curso_id"/>
+                                <field name="legajo"/>
+                                <field name="modalidad"/>
+                                <field name="fecha"/>
+                                <field name="sede_id"/>
+                                <field name="baja"/>
+                                </group>
+                                <notebook>
+                                  <!-- SOLAPA OBSERVACIONES --> 
+                                  <page string="Observaciones">
+                                      <field name="observacion_ids">
+                                          <tree string="Observaciones" editable="bottom">
+                                            <field name="fecha"/>
+                                            <field name="name"/>
+                                            <field name="baja"/>
+                                          </tree>
+                                      </field>
+                                  </page>
+                                </notebook>
+                              </form>
+                          </field>
+                      </page>
+                    </notebook>
+               </form>
+           </field>
+        </record>
+
+
+        <!--
+            VISTA GRILLA
+        -->
+        <record model="ir.ui.view" id="alumno_tree">
+            <field name="name">alumno.tree</field>
+            <field name="model">ie.alumno</field>
+            <field name="arch" type="xml">
+                <tree string="Alumno Tree" colors="red:baja!=False;">
+                    <field name="nombre"/>
+                    <field name="apellido"/>
+                    <field name="email"/>
+                    <field name="baja"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <!--
+            BUSQUEDA, FILTRO Y AGRUPAC
+        -->
+        <record model="ir.ui.view" id="alumno_search">
+            <field name="name">alumno.search</field>
+            <field name="model">ie.alumno</field>
+            <field name="arch" type="xml">
+                <search>
+                  <!-- los campos y el orden por los que va buscar -->
+                  <field name="apellido"/>
+                  <field name="nombre"/>
+                                        
+                  <filter name="activo" string="Activos" domain="[('baja', '=', False)]"/>                  
+                  <group string="Group By">
+                    <filter name="by_sede" string="Sede" context="{'group_by': 'sede_id'}"/>
+                  </group>
+                </search>
+            </field>
+        </record>
+
+
+        <!--
+            VISTA PRINCIPAL
+        -->
+        <record model="ir.actions.act_window" id="alumno_listado">
+            <field name="name">Alumnos</field>
+            <field name="res_model">ie.alumno</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        
+        <!-- 
+            SUBMENU LATERAL
+        -->
+        <menuitem id="menu_alumnos" name="Alumnos" parent="menu_principal"
+                  action="alumno_listado"/>
+    </data>
+</openerp>

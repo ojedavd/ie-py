@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <!--
+            VISTA FORMULARIO
+        -->        
+        <record model="ir.ui.view" id="ciudad_form">
+           <field name="name">ciudad.form</field>
+           <field name="model">ie.ciudad</field>
+           <field name="arch" type="xml">
+               <form string="Ciudad Form">
+                        <group col="2">
+                            <field name="name"/>
+                            <field name="provincia_id"/>
+                            <field name="baja"/>
+                        </group>
+               </form>
+           </field>
+        </record>
+
+
+        <!--
+            VISTA GRILLA
+        -->
+        <record model="ir.ui.view" id="ciudad_tree">
+           <field name="name">ciudad.tree</field>
+           <field name="model">ie.ciudad</field>
+           <field name="arch" type="xml">
+              <tree string="Ciudad Tree" colors="red:baja!=False;">
+                  <field name="name"/>
+                  <field name="provincia_id"/>
+                  <field name="baja"/>
+              </tree>
+           </field>
+        </record>
+
+
+        <!--
+            VISTA PRINCIPAL
+        -->
+        <record model="ir.actions.act_window" id="ciudad_listado">
+            <field name="name">Ciudades</field>
+            <field name="res_model">ie.ciudad</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        
+        <!-- 
+            SUBMENU LATERAL
+        -->
+        <menuitem id="menu_ciudades" name="Ciudades" parent="menu_config"
+                  action="ciudad_listado"/>
+    </data>
+</openerp>

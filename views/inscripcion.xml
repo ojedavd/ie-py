@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+
+        <!--
+            VISTA FORMULARIO
+        -->        
+        <record model="ir.ui.view" id="incripcion_form">
+           <field name="name">inscripcion.form</field>
+           <field name="model">ie.inscripcion</field>
+           <field name="arch" type="xml">
+               <form string="Inscripcion Form">
+                    <group col="2">
+                        <field name="alumno_id"/>
+                        <field name="curso_id"/>
+                        <field name="legajo"/>
+                        <field name="modalidad"/>
+                        <field name="fecha"/>
+                        <field name="sede_id"/>
+                        <field name="baja"/>
+                    </group>
+                    <notebook>
+                      <!-- SOLAPA OBSERVACIONES --> 
+                      <page string="Observaciones">
+                          <field name="observacion_ids">
+                              <tree string="Observaciones" editable="bottom">
+                                <field name="fecha"/>
+                                <field name="name"/>
+                                <field name="baja"/>
+                              </tree>
+                          </field>
+                      </page>
+                    </notebook>
+               </form>
+           </field>
+        </record>
+
+
+        <!--
+            VISTA GRILLA
+        -->
+        <record model="ir.ui.view" id="inscripcion_tree">
+            <field name="name">inscripcion.tree</field>
+            <field name="model">ie.inscripcion</field>
+            <field name="arch" type="xml">
+                <tree string="Inscripcion Tree" colors="red:baja!=False;">
+                    <field name="curso_id"/>
+                    <field name="fecha"/>
+                    <field name="baja"/>
+                </tree>
+            </field>
+        </record>
+
+
+
+        <!-- FILTRO Y AGRUPACION -->
+        <record model="ir.ui.view" id="inscripcion_search">
+            <field name="name">ie.search</field>
+            <field name="model">ie.inscripcion</field>
+            <field name="arch" type="xml">
+              <search>
+                <filter name="filter_baja" string="Inscripciones dadas de baja" domain="[('baja', '=', True)]"/>
+                <group string="Agrupa por">                    
+                  <filter name="group_by_curso" string="Agrupar por curso" context="{'group_by': 'curso_id'}"/>
+                </group>
+              </search>
+                </field>
+        </record>
+
+
+        <!--
+            VISTA PRINCIPAL
+        -->
+        <record model="ir.actions.act_window" id="inscripcion_listado">
+            <field name="name">Inscripciones</field>
+            <field name="res_model">ie.inscripcion</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- 
+            SUBMENU LATERAL
+        -->
+        <menuitem id="menu_inscripciones" name="Inscripciones" parent="menu_principal"
+                  action="inscripcion_listado"/>
+    </data>
+</openerp>

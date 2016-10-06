@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <!--
+            VISTA PRINCIPAL
+        -->
+        <record model="ir.actions.act_window" id="pago_listado">
+            <field name="name">Pagos</field>
+            <field name="res_model">ie.pago</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        
+        <!-- 
+            SUBMENU LATERAL
+        -->
+        <menuitem id="menu_pagos" name="Pagos" parent="menu_principal"
+                  action="pago_listado"/>
+    </data>
+</openerp>

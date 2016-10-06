@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <!--
+            VISTA FORMULARIO
+        -->        
+        <record model="ir.ui.view" id="curso_form">
+           <field name="name">curso.form</field>
+           <field name="model">ie.curso</field>
+           <field name="arch" type="xml">
+               <form string="Curso Form">
+                  <group col="2">
+                      <field name="name"/>
+                      <field name="codigo"/>
+                      <field name="tipo"/>
+                      <field name="inicio"/>
+                      <field name="fin"/>
+                      <field name="sede_id"/>
+                      <field name="baja"/>
+                  </group>
+                  <notebook>
+                      <page string="Módulos">
+                          <field name="cuotas_ids">
+                              <tree string="Módulos" editable="bottom">
+                                  <field name="name"/>
+                                  <field name="monto"/>
+                                  <field name="baja"/>
+                              </tree>
+                          </field>
+                      </page>
+                  </notebook>
+               </form>
+           </field>
+        </record>
+
+
+        <!--
+            VISTA GRILLA
+        -->
+        <record model="ir.ui.view" id="curso_tree">
+           <field name="name">curso.tree</field>
+           <field name="model">ie.curso</field>
+           <field name="arch" type="xml">
+              <tree string="Curso Tree" colors="red:baja!=False;">
+                  <field name="name"/>
+                  <field name="codigo"/>
+                  <field name="tipo"/>
+                  <field name="inicio"/>
+                  <field name="fin"/>
+                  <field name="baja"/>
+              </tree>
+           </field>
+        </record>
+
+
+        <!--
+            VISTA PRINCIPAL
+        -->
+        <record model="ir.actions.act_window" id="curso_listado">
+            <field name="name">Cursos</field>
+            <field name="res_model">ie.curso</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <!-- mensaje que muestra cuando no hay ningun registro creado -->           
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Crear el primer registro</p>
+            </field>
+        </record>
+        
+        <!-- 
+            SUBMENU LATERAL
+        -->
+        <menuitem id="menu_cursos" name="Cursos" parent="menu_config"
+                  action="curso_listado"/>
+    </data>
+</openerp>

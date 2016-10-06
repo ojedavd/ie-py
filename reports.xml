@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+	<!-- report definition-->
+        <report
+            id="reporte"
+            model="ie.inscripcion"
+            string="Comprobante de inscripción"
+            name="ie.report_inscripcion"
+            file="ie.reporte"
+            report_type="qweb-pdf" />
+
+	<!--report template-->
+	<template id="report_inscripcion">
+            <t t-call="report.external_layout">
+            <t t-foreach="docs" t-as="doc">
+                <div class="page">
+                    <h2 t-field="doc.curso_id.name"/>
+                    <h2 t-field="doc.alumno_id.nombre"/>
+
+                    <p>Fecha de inscrip <span t-field="doc.fecha"/></p>
+           
+			        <h3>Observaciones:</h3>
+                        <table class="table table-condensed">
+
+                            <t t-foreach="doc.observacion_ids" t-as="obs">
+                                <tr><td><span t-field="obs.name"/></td></tr>
+                                <tr><td><span t-field="obs.fecha"/></td></tr>
+                            </t>
+                        
+                        </table>
+                </div>
+            </t>
+            <!--</t>-->
+        </t>
+	</template>
+    </data>
+</openerp>

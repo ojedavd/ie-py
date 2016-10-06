@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <!--         
+            MENU NAVEGACION SUPERIOR
+        -->
+        <menuitem id="menu_superior" name="INICIO"/>
+
+        
+        <!-- 
+            MENU INSTITUTO IE
+        -->
+        <menuitem id="menu_principal" name="Menú Principal"
+                  parent="menu_superior"/>
+
+
+        <!-- 
+            MENU CONFIG
+        -->
+        <menuitem id="menu_config" name="Configuración"
+                  parent="menu_superior"/>
+
+    </data>
+</openerp>

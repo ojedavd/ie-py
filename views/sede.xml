@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+
+        <!--
+            VISTA FORMULARIO
+        -->        
+        <record model="ir.ui.view" id="sede_form">
+           <field name="name">sede.form</field>
+           <field name="model">ie.sede</field>
+           <field name="arch" type="xml">
+               <form string="Sede Form">
+                        <group col="2">
+                            <field name="name"/>
+                            <field name="domicilio"/>
+                            <field name="telefono"/>
+                            <field name="email"/>
+                            <field name="ciudad_id"/>
+                            <field name="baja"/>
+                        </group>
+               </form>
+           </field>
+        </record>
+
+
+        <!--
+            VISTA GRILLA
+        -->
+        <record model="ir.ui.view" id="sede_tree">
+           <field name="name">sede.tree</field>
+           <field name="model">ie.sede</field>
+           <field name="arch" type="xml">
+              <tree string="Sede Tree" colors="red:baja!=False;">
+                  <field name="name"/>
+                  <field name="domicilio"/>
+                  <field name="telefono"/>
+                  <field name="email"/>
+                  <field name="baja"/>
+              </tree>
+           </field>
+        </record>
+
+        
+        <!--
+            VISTA PRINCIPAL
+        -->
+        <record model="ir.actions.act_window" id="sede_listado">
+            <field name="name">Sedes</field>
+            <field name="res_model">ie.sede</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        
+        <!-- 
+            SUBMENU LATERAL
+        -->
+        <menuitem id="menu_sedes" name="Sedes" parent="menu_config"
+                  action="sede_listado"/>
+    </data>
+</openerp>

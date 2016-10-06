@@ -1,0 +1,25 @@
+<openerp>
+	<data>
+		<!--
+		habilita el rol IE / Manager en la solapa de
+		los permisos del formulario de usuario
+		-->
+		<record id="group_manager" model="res.groups">
+			<field name="name">IE / Manager</field>
+		</record>
+
+        <record id="solo_inscripto" model="ir.rule">
+            <field name="name">Solo el inscripto puede ver el curso</field>
+            <field name="model_id" ref="model_ie_curso"/>
+            <field name="groups" eval="[(4, ref('ie.group_manager'))]"/>
+            <field name="perm_read" eval="0"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="0"/>
+            <field name="perm_unlink" eval="1"/>
+            <field name="domain_force">
+                [('alumno_id', '=', user.id)]
+            </field>
+        </record>
+
+	</data>
+</openerp>
